@@ -1,3 +1,3 @@
 # peardating
 
-Hi Kyle
+Hi Kyle. Let's get rich!
