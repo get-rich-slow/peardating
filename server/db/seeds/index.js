@@ -1,8 +1,8 @@
-const fakeMessages = require('Message-seed');
-const fakeChats = require('Chat-seed');
-const fakeChatusers = require('Chatuser-seed');
-const fakePairs = require('Pair-seed');
-const fakeUsers = require('User-seed');
+const fakeMessages = require('./Message-seed');
+const fakeChats = require('./Chat-seed');
+const fakeChatusers = require('./Chatuser-seed');
+const fakePairs = require('./Pair-seed');
+const fakeUsers = require('./User-seed');
 
 
 

@@ -12,8 +12,13 @@ const {
 
 const syncAndSeed = () => {
   return db.sync({ force: true }).then(() => {
-    fakeMessages.map(fakeMessage => {
-      Message.create({ text: fakeMessage.text });
-    });
+    return Promise.all(
+      fakeMessages.map(fakeMessage => {
+        console.log(fakeMessage.text)
+        Message.create({ text: fakeMessage.text });
+      })
+    );
   });
 };
+
+module.exports = { syncAndSeed };
