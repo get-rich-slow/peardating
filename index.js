@@ -1,24 +1,38 @@
-var app = require('express')();
+
+const path = require('path');
+const express = require('express');
+
+const app = express();
+
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
+//Static middleware
+app.use(express.static(path.join(__dirname)));
 
-/*io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
-*/
+//Parsing middleware
+app.use('/', express.json());
+app.use(express.urlencoded({extended: true}));
+
+
+//API middleware
+//app.use('/api', require('./routes/api'));
+
+
+//Routes
+app.get('/', (req, res, next) => res.sendFile('index.html'));
+// app.get('/app.js', (req, res, next) =>
+//   res.sendFile(path.join(__dirname, '..', 'dist', 'main.js'))
+// );
+
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+    socket.on('chat message', function(msg){
+      io.emit('chat message', msg);
+    });
   });
-});
+  
 
-http.listen(3000,function(){
-	console.log('listening on *:3000');
-});
+module.exports = app;
+
+const PORT = process.env.PORT || 1337;
+app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
