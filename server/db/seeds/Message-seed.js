@@ -4,7 +4,7 @@ const faker = require('faker')
 let fakeMessages = [];
 
 for (let i = 0; i < 50; i++){
-    fakeMessages.push(faker.lorem.sentence());
+    fakeMessages.push({text:faker.lorem.sentence()});
 }
 
 
