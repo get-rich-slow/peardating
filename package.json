@@ -2,10 +2,10 @@
     "name": "peardating",
     "version": "1.0.0",
     "description": "PEAR DATING!!!",
-    "main": "index.js",
+    "main": "./src/index.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node server/server.js",
+      "start": "node src/index.js",
       "webpack": "webpack",
       "webpack:dev": "npm run webpack -- --mode=development --watch",
       "start:dev": "DATABASE_URL=postgres://localhost/peardating nodemon server/server.js --ignore src/ --ignore dist/",
