@@ -3,6 +3,9 @@ const express = require('express');
 
 const app = express();
 
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+
 //Static middleware
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -21,5 +24,11 @@ app.get('/', (req, res, next) => res.sendFile('index.html'));
 //   res.sendFile(path.join(__dirname, '..', 'dist', 'main.js'))
 // );
 
+io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+      io.emit('chat message', msg);
+    });
+  });
+  
 
 module.exports = app;
