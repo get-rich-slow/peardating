@@ -8,6 +8,7 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
 //Static middleware
+app.use(express.static(path.join(__dirname)));
 app.use('/scripts',express.static(path.join(__dirname,'node_modules')));
 
 //Parsing middleware
