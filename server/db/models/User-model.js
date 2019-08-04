@@ -2,6 +2,9 @@ const db = require("../connection");
 const { Sequelize } = db;
 
 const User = db.define("user", {
+  name: {
+    type: Sequelize.STRING
+  },
   age: {
     type: Sequelize.INTEGER,
     validate: {
