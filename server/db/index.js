@@ -5,7 +5,7 @@ const {
   fakeChats,
   fakeChatusers,
   fakePairs,
-  fakeUser
+  fakeUsers,
 } = require("./seeds");
 
 //define models relations here
@@ -25,11 +25,14 @@ User.hasMany(Message)
 
 const syncAndSeed = () => {
   return db.sync({ force: true }).then(() => {
-    return Promise.all(
+    return Promise.all([
       fakeMessages.map(fakeMessage => {
         Message.create({ text: fakeMessage.text });
+      }),
+      fakeUsers.map(fakeUser => {
+        User.create(fakeUser);
       })
-    );
+    ]);
   });
 };
 
